@@ -27,3 +27,8 @@ $ python manage.py sell
 ```shell script
 $ tail -f logs/query.log
 ```
+
+### Update Dump
+```shell script
+$ python manage.py daumpdata --exclude auth --exclude contenttypes > dump.json
+```
