@@ -17,7 +17,7 @@ $ touch logs/query.log
 ### Run Examples
 
 ```shell script
-$ python manage.py sell
+$ python manage.py shell
 >>> from query.models import *
 ...
 ```
