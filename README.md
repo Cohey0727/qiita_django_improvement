@@ -8,7 +8,7 @@ git clone https://github.com/Cohey0727/qiita_django_improvement.git
 cd qiita_django_improvement
 python3 -m venv venv
 source venv/bin/activate
-pip install -r requriments.txt
+pip install -r requirements.txt
 python manage.py migrate
 python manage.py loaddata dump.json
 touch logs/query.log
