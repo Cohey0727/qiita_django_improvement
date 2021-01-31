@@ -10,12 +10,9 @@ BATCH_SIZE = 500
 
 
 def run():
-    done_records = 0
-
     # create groups
     groups = [Group(name=f'group-{index}') for index in range(GROUP_COUNT)]
     Group.objects.bulk_create(groups, batch_size=BATCH_SIZE)
-    done_records = GROUP_COUNT
 
     # create users
     all_groups = Group.objects.all()
@@ -24,7 +21,6 @@ def run():
         for index in range(USER_COUNT_BY_GROUP) for group in all_groups
     ]
     User.objects.bulk_create(users, batch_size=BATCH_SIZE)
-    done_records += USER_COUNT_BY_GROUP * GROUP_COUNT
 
     # create invoices
     all_users = User.objects.all()
@@ -36,8 +32,7 @@ def run():
         ])
         if len(invoices) >= BATCH_SIZE:
             Invoice.objects.bulk_create(invoices, batch_size=BATCH_SIZE)
-            done_records += len(invoices)
+
             invoices = []
 
     Invoice.objects.bulk_create(invoices, batch_size=BATCH_SIZE)
-    done_records += len(invoices)
